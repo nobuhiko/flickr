@@ -1,4 +1,4 @@
-Flickr Api Wrapper for PHP5.3
+Flickr Api Wrapper for PHP5.6
 =============================
 
 ```php

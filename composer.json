@@ -1,23 +1,23 @@
 {
-    "name": "rezzza/flickr",
+    "name": "nobuhiko/flickr",
     "description": "Flickr API Wrapper",
     "keywords": ["flickr"],
     "type": "standalone",
-    "homepage": "https://github.com/rezzza/flickr",
+    "homepage": "https://github.com/nobuhiko/flickr",
     "license": "MIT",
     "authors": [{
         "name": "Community contributors",
-        "homepage": "https://github.com/rezzza/flickr/contributors"
+        "homepage": "https://github.com/nobuhiko/flickr/contributors"
     }],
     "require": {
-        "php": ">=5.3.2"
+        "php": "^5.4|^7.0"
     },
     "suggest": {
         "guzzle/guzzle": "HTTP wrapper",
         "guzzle/http": "Guzzle Adapter for http requests"
     },
     "require-dev": {
-        "guzzle/http": "3.*",
+        "guzzlehttp/guzzle": "~5.0",
         "phpunit/phpunit": "3.7.32"
     },
     "autoload":     {

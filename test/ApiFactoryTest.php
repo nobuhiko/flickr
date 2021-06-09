@@ -23,6 +23,16 @@ class ApiFactoryTest extends PHPUnit_Framework_TestCase {
         $this->api = new \Rezzza\Flickr\ApiFactory($metadata, new \Rezzza\Flickr\Http\GuzzleAdapter());
     }
 
+    public function testCall()
+    {
+        $recents_xml = $this->api->call('flickr.test.echo');
+
+        $this->assertInstanceOf('\SimpleXMLElement', $recents_xml);
+        $this->assertEquals($recents_xml->attributes()->stat, 'ok');
+    }
+
+
+    /*
     public function testMultiCall()
     {
         $recents_xml = $this->api->call('flickr.photos.getRecent');
@@ -38,6 +48,6 @@ class ApiFactoryTest extends PHPUnit_Framework_TestCase {
             $this->assertInstanceOf('\SimpleXMLElement', $photo_xml);
             $this->assertObjectNotHasAttribute('err', $photo_xml);
         }
-    }
+    }*/
 
 }
