@@ -36,7 +36,7 @@ class GuzzleAdapter implements AdapterInterface
         try {
             $response = $this->client->post($url, [
                 'headers'         => $headers,
-                'body'            => $data,
+                'form_params'     => $data,
                 'allow_redirects' => true,
             ]);
 
@@ -48,7 +48,7 @@ class GuzzleAdapter implements AdapterInterface
             }*/
         }
 
-        return $response->xml();
+        return new \SimpleXMLElement($response->getBody()->getContents());
     }
 
     /**
