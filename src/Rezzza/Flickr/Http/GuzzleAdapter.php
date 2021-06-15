@@ -28,25 +28,31 @@ class GuzzleAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function post($url, array $data = array(), array $headers = array())
+    public function post($url, array $parameters = array(), array $headers = array())
     {
-        // flickr does not supports this header and return a 417 http code during upload
-        //$request->removeHeader('Expect');
 
-        try {
-            $response = $this->client->post($url, [
-                'headers'         => $headers,
-                'form_params'     => $data,
-                'allow_redirects' => true,
-            ]);
+        $multipart = [];
+        foreach($parameters as $key => $parameter) {
+            $data = [];
 
-        } catch (RequestException $e) {
+            $data['name'] = $key;
+            $data['contents'] = $parameter;
 
-            /*echo $e->getRequest() . "\n";
-            if ($e->hasResponse()) {
-                echo $e->getResponse() . "\n";
-            }*/
+            if ($key == 'photo') {
+                $data['contents'] = fopen($parameter, 'r');
+                $data['filename'] = basename($parameter);
+            }
+
+            $multipart[] = $data;
         }
+
+        // guzzle6 need multipart
+        $response = $this->client->post( $url, [
+            'headers' => $headers,
+            'allow_redirects' => true,
+            'multipart' => $multipart,
+        ]);
+
 
         return new \SimpleXMLElement($response->getBody()->getContents());
     }

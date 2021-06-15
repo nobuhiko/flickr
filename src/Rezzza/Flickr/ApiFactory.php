@@ -106,7 +106,7 @@ class ApiFactory
         }
 
         $parameters = array(
-            'photo'       => '@'.$path,
+            'photo'       => $path,
             'title'       => $title,
             'description' => $description,
             'tags'        => $tags,

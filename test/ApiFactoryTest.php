@@ -31,6 +31,11 @@ class ApiFactoryTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($recents_xml->attributes()->stat, 'ok');
     }
 
+    /*
+    public function testUpload()
+    {
+        $recents_xml = $this->api->upload(__DIR__ . '/test.jpg', 'Upload Test');
+    }*/
 
     /*
     public function testMultiCall()
