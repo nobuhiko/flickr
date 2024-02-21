@@ -53,11 +53,11 @@ class ApiFactory
      *
      * @return \SimpleXMLElement
      */
-    public function call($service = null, array $parameters = array(), $endpoint = null)
+    public function call($service = null, array $parameters = array(), $endpoint = null, $request = "post")
     {
         $parameters = $this->buildParams($service, $parameters, $endpoint);
 
-        return $this->http->post($endpoint, $parameters);
+        return $this->http->$request($endpoint, $parameters);
     }
 
     /**

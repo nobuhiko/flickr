@@ -57,6 +57,18 @@ class GuzzleAdapter implements AdapterInterface
         return new \SimpleXMLElement($response->getBody()->getContents());
     }
 
+    public function get($url, array $parameters = array(), array $headers = array())
+    {
+        $data = [];
+        foreach($parameters as $key => $parameter) {
+            $data[$key] = $parameter;
+        }
+
+        $response = $this->client->request('GET', $url, ['query' => $data]);
+
+        return new \SimpleXMLElement($response->getBody()->getContents());
+    }
+
     /**
      * todo 動かない
      */
